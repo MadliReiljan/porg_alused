@@ -1,0 +1,19 @@
+{
+  "name": "porg_alused",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-handlebars": "^8.0.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.11.0",
+    "node": "^22.8.0"
+  },
+  "keywords": [],
+  "description": ""
+}
