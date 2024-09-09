@@ -12,7 +12,7 @@ class articleController {
     }
 
     async getAllArticleBySlug(req, res){
-        const articles = await articleModel.findOne(req.params.sulg)
+        const article = await articleModel.findOne(req.params.slug)
         res.status(201).json({article: article})
     }
 }
