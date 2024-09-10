@@ -31,6 +31,26 @@ class articleController {
             article: {id: articleId, ...newArticle}
         })
     }
+
+    async updateArticle(req, res){
+        const updatedArticleId = req.params.id;
+
+        const updatedArticle = {
+            name: req.body.name,
+            slug: req.body.slug,
+            image: req.body.image,
+            body: req.body.body,
+            published: new Date().toISOString().slice(0, 19).replace('T', ' '),
+            author_id: req.body.author_id
+        }
+
+        await articleModel.update(updatedArticleId, updatedArticle);
+
+        res.status(201).json({
+            message: `updated article with id ${updatedArticleId}`,
+            article: {id: updatedArticleId, ...updatedArticle}
+        })
+    }
 }
 
 module.exports = articleController
