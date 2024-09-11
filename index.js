@@ -25,6 +25,8 @@ const authorRoutes = require('./routes/author');
 app.use('/', authorRoutes);
 const userRoutes = require('./routes/users');
 app.use('/', userRoutes);
+const adminRoutes = require('./routes/admin');
+app.use('/', adminRoutes);
 
 
 app.listen(3025, () => {
