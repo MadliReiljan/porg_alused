@@ -5,6 +5,18 @@ const app = express();
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
+const path = require('path')
+//HBS
+const hbs = require('express-handlebars','hbs');
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'hbs');
+app.engine('hbs', hbs.engine({
+    extname: 'hbs',
+    defaultLayout: 'main',
+    layoutsDir: __dirname + '/views/layouts/',
+}))
+app.use(express.static('public'));
+
 
 app.use(sessions({
     secret: "thisismysecretkey",
