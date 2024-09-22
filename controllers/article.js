@@ -1,20 +1,24 @@
-const articleDbModel = require('../models/article')
+const articleDbModel = require ('../models/article')
 const articleModel = new articleDbModel();
 
 class articleController {
     constructor() {
         const articles = []
     }
-
+    
     async getAllArticles(req, res){
         const articles = await articleModel.findAll()
         res.status(201).render('index', {articles: articles})
     }
 
-    async getAllArticleBySlug(req, res){
+    async getArticleBySlug(req,res){
         const article = await articleModel.findOne(req.params.slug)
         res.status(201).render('article', {article: article})
     }
+
+    async createForm(req, res) {
+        res.render('create');
+      }
 
     async createNewArticle(req, res){
         const newArticle = {
@@ -25,8 +29,9 @@ class articleController {
             published: new Date().toISOString().slice(0, 19).replace('T', ' '),
             author_id: req.body.author_id
         }
-        const articleId = await articleModel.create(newArticle)
-        res.status(201).json({
+        const articleId = await articleModel.create(newArticle);
+
+        res.status(201).json('create', {
             message: `created article with id ${articleId}`,
             article: {id: articleId, ...newArticle}
         })
@@ -61,8 +66,8 @@ class articleController {
             message: `deleted article with id ${deletedArticleId}`
         });
     }
+
+    
 }
 
-
-
-module.exports = articleController
+module.exports = articleController;
